@@ -14,3 +14,6 @@ results/perf/perf-script.txt
 Thumbs.db
 desktop.ini
 .DS_Store
+pylibs/
+__pycache__/
+*.pyc
