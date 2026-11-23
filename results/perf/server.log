@@ -1,0 +1,2 @@
+[server] loading index /root/proj1/data/index.bin
+[server] ready: ef=64 threads=8 port=9200 nodelay=1 busypoll=0

@@ -1,0 +1,13 @@
+== perf stat (software events) ==
+
+ Performance counter stats for process id '11192':
+
+         45,860.51 msec task-clock                #    3.821 CPUs utilized          
+           239,661      context-switches          #    5.226 K/sec                  
+                93      cpu-migrations            #    2.028 /sec                   
+                31      page-faults               #    0.676 /sec                   
+   <not supported>      cycles                                                      
+   <not supported>      instructions                                                
+
+      12.001107872 seconds time elapsed
+

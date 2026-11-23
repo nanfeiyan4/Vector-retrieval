@@ -1,0 +1,143 @@
+warning: found a return instruction in the input assembly sequence.
+note: program counter updates are ignored.
+Iterations:        200
+Instructions:      10000
+Total Cycles:      2229
+Total uOps:        12200
+
+Dispatch Width:    6
+uOps Per Cycle:    5.47
+IPC:               4.49
+Block RThroughput: 10.2
+
+
+Instruction Info:
+[1]: #uOps
+[2]: Latency
+[3]: RThroughput
+[4]: MayLoad
+[5]: MayStore
+[6]: HasSideEffects (U)
+
+[1]    [2]    [3]    [4]    [5]    [6]    Instructions:
+ 1      1     0.25                        testl	%ecx, %ecx
+ 1      1     0.50                        jle	.LBB0_1
+ 1      1     0.25                        movl	%ecx, %eax
+ 1      1     0.50                        leaq	-1(%rax), %rcx
+ 1      1     0.25                        movl	%eax, %r8d
+ 1      1     0.25                        andl	$3, %r8d
+ 1      1     0.25                        cmpq	$3, %rcx
+ 1      1     0.50                        jae	.LBB0_8
+ 1      0     0.17                        xorps	%xmm0, %xmm0
+ 1      0     0.17                        xorl	%ecx, %ecx
+ 1      1     0.50                        jmp	.LBB0_4
+ 1      0     0.17                        xorps	%xmm0, %xmm0
+ 2      1     1.00           *            movss	%xmm0, (%rdx)
+ 3      7     1.00                  U     retq
+ 1      1     0.25                        andl	$-4, %eax
+ 1      0     0.17                        xorps	%xmm0, %xmm0
+ 1      0     0.17                        xorl	%ecx, %ecx
+ 1      5     0.50    *                   movss	(%rdi,%rcx,4), %xmm1
+ 1      5     0.50    *                   movss	4(%rdi,%rcx,4), %xmm2
+ 2      9     0.50    *                   subss	(%rsi,%rcx,4), %xmm1
+ 1      4     0.50                        mulss	%xmm1, %xmm1
+ 1      4     0.50                        addss	%xmm0, %xmm1
+ 2      9     0.50    *                   subss	4(%rsi,%rcx,4), %xmm2
+ 1      4     0.50                        mulss	%xmm2, %xmm2
+ 1      4     0.50                        addss	%xmm1, %xmm2
+ 1      5     0.50    *                   movss	8(%rdi,%rcx,4), %xmm1
+ 2      9     0.50    *                   subss	8(%rsi,%rcx,4), %xmm1
+ 1      4     0.50                        mulss	%xmm1, %xmm1
+ 1      4     0.50                        addss	%xmm2, %xmm1
+ 1      5     0.50    *                   movss	12(%rdi,%rcx,4), %xmm0
+ 2      9     0.50    *                   subss	12(%rsi,%rcx,4), %xmm0
+ 1      4     0.50                        mulss	%xmm0, %xmm0
+ 1      4     0.50                        addss	%xmm1, %xmm0
+ 1      1     0.25                        addq	$4, %rcx
+ 1      1     0.25                        cmpq	%rcx, %rax
+ 1      1     0.50                        jne	.LBB0_9
+ 1      1     0.25                        testq	%r8, %r8
+ 1      1     0.50                        je	.LBB0_7
+ 1      1     0.50                        leaq	(%rsi,%rcx,4), %rax
+ 1      1     0.50                        leaq	(%rdi,%rcx,4), %rcx
+ 1      0     0.17                        xorl	%esi, %esi
+ 1      5     0.50    *                   movss	(%rcx,%rsi,4), %xmm1
+ 2      9     0.50    *                   subss	(%rax,%rsi,4), %xmm1
+ 1      4     0.50                        mulss	%xmm1, %xmm1
+ 1      4     0.50                        addss	%xmm1, %xmm0
+ 1      1     0.25                        addq	$1, %rsi
+ 1      1     0.25                        cmpq	%rsi, %r8
+ 1      1     0.50                        jne	.LBB0_6
+ 2      1     1.00           *            movss	%xmm0, (%rdx)
+ 3      7     1.00                  U     retq
+
+
+Resources:
+[0]   - SKXDivider
+[1]   - SKXFPDivider
+[2]   - SKXPort0
+[3]   - SKXPort1
+[4]   - SKXPort2
+[5]   - SKXPort3
+[6]   - SKXPort4
+[7]   - SKXPort5
+[8]   - SKXPort6
+[9]   - SKXPort7
+
+
+Resource pressure per iteration:
+[0]    [1]    [2]    [3]    [4]    [5]    [6]    [7]    [8]    [9]    
+ -      -     10.03  9.82   6.01   6.01   2.00   9.57   9.59   1.99   
+
+Resource pressure by instruction:
+[0]    [1]    [2]    [3]    [4]    [5]    [6]    [7]    [8]    [9]    Instructions:
+ -      -     0.01    -      -      -      -     0.80   0.20    -     testl	%ecx, %ecx
+ -      -     0.99    -      -      -      -      -     0.01    -     jle	.LBB0_1
+ -      -     0.20   0.21    -      -      -     0.59    -      -     movl	%ecx, %eax
+ -      -      -     0.02    -      -      -     0.98    -      -     leaq	-1(%rax), %rcx
+ -      -     0.57   0.21    -      -      -     0.20   0.02    -     movl	%eax, %r8d
+ -      -     0.20   0.20    -      -      -     0.20   0.41    -     andl	$3, %r8d
+ -      -     0.20   0.01    -      -      -     0.02   0.78    -     cmpq	$3, %rcx
+ -      -     0.21    -      -      -      -      -     0.80    -     jae	.LBB0_8
+ -      -      -      -      -      -      -      -      -      -     xorps	%xmm0, %xmm0
+ -      -      -      -      -      -      -      -      -      -     xorl	%ecx, %ecx
+ -      -     0.80    -      -      -      -      -     0.21    -     jmp	.LBB0_4
+ -      -      -      -      -      -      -      -      -      -     xorps	%xmm0, %xmm0
+ -      -      -      -     0.01    -     1.00    -      -     1.00   movss	%xmm0, (%rdx)
+ -      -      -      -      -     1.00    -     1.00   1.00    -     retq
+ -      -     0.01   0.20    -      -      -     0.80   0.01    -     andl	$-4, %eax
+ -      -      -      -      -      -      -      -      -      -     xorps	%xmm0, %xmm0
+ -      -      -      -      -      -      -      -      -      -     xorl	%ecx, %ecx
+ -      -      -      -     0.01   1.00    -      -      -      -     movss	(%rdi,%rcx,4), %xmm1
+ -      -      -      -     0.61   0.40    -      -      -      -     movss	4(%rdi,%rcx,4), %xmm2
+ -      -     0.21   0.80   1.00    -      -      -      -      -     subss	(%rsi,%rcx,4), %xmm1
+ -      -     0.23   0.78    -      -      -      -      -      -     mulss	%xmm1, %xmm1
+ -      -     0.60   0.41    -      -      -      -      -      -     addss	%xmm0, %xmm1
+ -      -     0.40   0.60   0.39   0.61    -      -      -      -     subss	4(%rsi,%rcx,4), %xmm2
+ -      -     0.60   0.41    -      -      -      -      -      -     mulss	%xmm2, %xmm2
+ -      -     0.59   0.41    -      -      -      -      -      -     addss	%xmm1, %xmm2
+ -      -      -      -     0.41   0.59    -      -      -      -     movss	8(%rdi,%rcx,4), %xmm1
+ -      -     0.79   0.22   0.98   0.02    -      -      -      -     subss	8(%rsi,%rcx,4), %xmm1
+ -      -     0.41   0.60    -      -      -      -      -      -     mulss	%xmm1, %xmm1
+ -      -     0.21   0.80    -      -      -      -      -      -     addss	%xmm2, %xmm1
+ -      -      -      -     0.61   0.39    -      -      -      -     movss	12(%rdi,%rcx,4), %xmm0
+ -      -     0.41   0.60    -     1.00    -      -      -      -     subss	12(%rsi,%rcx,4), %xmm0
+ -      -     0.21   0.79    -      -      -      -      -      -     mulss	%xmm0, %xmm0
+ -      -     0.60   0.41    -      -      -      -      -      -     addss	%xmm1, %xmm0
+ -      -      -      -      -      -      -     0.81   0.20    -     addq	$4, %rcx
+ -      -      -      -      -      -      -     0.20   0.81    -     cmpq	%rcx, %rax
+ -      -     0.01    -      -      -      -      -     1.00    -     jne	.LBB0_9
+ -      -      -      -      -      -      -     0.81   0.20    -     testq	%r8, %r8
+ -      -     0.01    -      -      -      -      -     1.00    -     je	.LBB0_7
+ -      -      -     0.01    -      -      -     1.00    -      -     leaq	(%rsi,%rcx,4), %rax
+ -      -      -     0.21    -      -      -     0.79    -      -     leaq	(%rdi,%rcx,4), %rcx
+ -      -      -      -      -      -      -      -      -      -     xorl	%esi, %esi
+ -      -      -      -     1.00    -      -      -      -      -     movss	(%rcx,%rsi,4), %xmm1
+ -      -     0.41   0.59    -     1.00    -      -      -      -     subss	(%rax,%rsi,4), %xmm1
+ -      -     0.61   0.40    -      -      -      -      -      -     mulss	%xmm1, %xmm1
+ -      -     0.60   0.41    -      -      -      -      -      -     addss	%xmm1, %xmm0
+ -      -     0.01   0.39    -      -      -     0.40   0.21    -     addq	$1, %rsi
+ -      -      -      -      -      -      -     0.22   0.79    -     cmpq	%rsi, %r8
+ -      -     0.01    -      -      -      -      -     1.00    -     jne	.LBB0_6
+ -      -      -      -      -     0.01   1.00    -      -     1.00   movss	%xmm0, (%rdx)
+ -      -     0.01   0.21   1.00    -      -     0.79   1.00    -     retq

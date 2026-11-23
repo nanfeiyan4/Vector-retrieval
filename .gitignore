@@ -1,0 +1,16 @@
+﻿# 可再生产物（不入库）
+data/
+build/
+hnswlib/
+*.o
+*.so
+*.a
+
+# 过大的 perf 原始采样（报告里保留了汇总报告与统计）
+results/perf/perf.data
+results/perf/perf-script.txt
+
+# Windows / 编辑器
+Thumbs.db
+desktop.ini
+.DS_Store
