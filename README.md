@@ -133,7 +133,7 @@ bash scripts/bench.sh --label mytest --ef 64 --sthreads 8 --cthreads 8 --nq 1 \
 | 内容 | 是否入库 | 原因 / 重建方式 |
 |---|---|---|
 | `data/sift.hdf5`、`base/query/gt` | ❌ | 合计约 1 GB，可下载 + 10 秒派生；校验和见 `DATA_PROVENANCE.md` |
-| `data/index.bin`（630 MB） | ❌ | 并行插入导致字节不可复现；首启自动重建约 90 s |
+| `data/index.bin`（630 MB） | ❌ | 并行插入导致字节不可复现（详见 `DATA_PROVENANCE.md` 3.1）；首启自动重建约 90 s |
 | `build/`、`hnswlib/` | ❌ | `build.sh` / GitHub tarball |
 | `results/perf/perf.data`、`perf-script.txt` | ❌ | 合计 27 MB 原始采样；`perf-report.txt` 已保留汇总证据 |
 | 其余全部（代码/脚本/结果/报告/图） | ✅ | 40 个文件，约 0.8 MB |

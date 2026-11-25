@@ -126,17 +126,22 @@ client (闭环, N 线程)  ──TCP──▶  server (SO_REUSEPORT, M worker)
 | `report.md` | 研究报告正文 |
 | `README.md` | 复现步骤与实验矩阵 |
 
-## 7. 只存在于服务器、不在本地的体积项（需要的话可以拉下来）
+## 7. 本地副本现状（2026-11-25 补齐）
 
-| 路径（服务器 `/root/proj1/`） | 大小 | 能否重建 |
-|---|---|---|
-| `data/sift.hdf5` | 501 MB | 可重下（aria2，约 30 s） |
-| `data/base.f32` `query.f32` `gt.i32` | 512 + 5 + 4 MB | `scripts/prepare_data.py` 可再生 |
-| `data/index.bin` | 630 MB | 首次启动自动重建（约 90 s） |
-| `build/vecserver*` `vecclient` `probe` | ~0.4 MB | `scripts/build.sh` |
-| `hnswlib/` | ~10 MB | `codeload.github.com/nmslib/hnswlib` 拉取 |
+原实验主机下线、数据无法回传，因此改为**在本机重新获取全部体积项**，并逐项校验：
 
-本地已包含**代码、脚本、全部结果、报告、图表**共 40 个文件 / 28.3 MB，不含上述可再生的体积项。
+| 路径（本地 `proj1/`） | 大小 | 获取方式 | 校验 |
+|---|---:|---|---|
+| `data/sift.hdf5` | 525,128,288 B | `scripts/fetch_parallel.py`（24 路，36 s，~15 MB/s） | SHA-256 与源站一致 |
+| `data/base.f32` | 512,000,000 B | `scripts/prepare_data.py` | `ac8e11ed…48e6` |
+| `data/query.f32` | 5,120,000 B | 同上 | `bf4c4c9d…2d6f` |
+| `data/gt.i32` | 4,000,000 B | 同上 | `4d880e63…b870` |
+| `data/index.bin` | 660,565,344 B | 在 114.215.202.9 上重建（4 物理核，M=16/efc=200，~2 min），gzip 回传 | `1942c06f…b46b2f`；`ef=64` 下 `Recall@10=0.9640` |
+
+`build/` 与 `hnswlib/` 仍不入库，按 `scripts/build.sh` 与 README 的 curl 命令可再生。
+完整校验信息与构建记录见 `DATA_PROVENANCE.md`。
+
+> 结果集（`results/`）自始至终只在本地产出与保存，从未依赖服务器，故未受影响。
 
 ## 8. 待办（如果继续做）
 
